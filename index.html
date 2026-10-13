@@ -34,16 +34,54 @@ nav{position:fixed;bottom:0;left:0;right:0;background:var(--navbg);backdrop-filt
 .game{font-size:clamp(34px,11vw,72px);font-weight:700;line-height:1.05}
 .pop{position:fixed;top:calc(14px + env(safe-area-inset-top));left:50%;transform:translate(-50%,-160%);background:var(--ink);color:var(--on);border-radius:14px;padding:14px 18px;z-index:40;width:min(92vw,400px);transition:.35s;text-align:center}.pop.on{transform:translate(-50%,0)}.pop b{font-size:16px}.pop .btn{margin-top:8px;background:var(--bg);color:var(--ink);padding:6px 16px}
 .toast{position:fixed;bottom:calc(150px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);background:var(--ink);color:var(--on);padding:8px 16px;border-radius:10px;z-index:50;font-size:13px;display:none}
+
+/* settings list (Android settings pattern: grouped rows, title + summary, control at the end, switches) */
+.gh{font-size:13px;font-weight:600;color:var(--mut);padding:18px 6px 8px}
+.grp{background:var(--bg);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.ft{font-size:12.5px;color:var(--mut);padding:8px 6px 0;line-height:1.55}
+.rw{display:flex;align-items:center;gap:12px;padding:10px 16px;min-height:60px;border-top:1px solid var(--line)}.rw:first-child{border-top:0}
+.rw .lb{flex:1;min-width:0}.rw .lb b{display:block;font-size:15px;font-weight:500;color:var(--ink)}.rw .lb small{display:block;font-size:12.5px;color:var(--mut);margin-top:1px;line-height:1.45}
+.rw .ci{width:112px;flex:none;min-height:42px;padding:8px 10px;text-align:center;font-size:15px}.rw .ci.w{width:180px}.rw select.ci{width:132px;text-align:start}.rw input[type=time].ci{width:140px}.sh .row .btn{flex:1}
+.rw.col{flex-direction:column;align-items:stretch;gap:8px;padding:14px 16px}
+.rw .btn{min-height:40px;padding:6px 16px;font-size:14px;flex:none}
+.swc{position:relative;width:52px;height:32px;flex:none}.swc input{position:absolute;inset:0;opacity:0;margin:0;min-height:0;cursor:pointer;z-index:1}
+.swc i{position:absolute;inset:0;border-radius:99px;background:var(--soft);border:2px solid var(--bd);transition:.2s}
+.swc i:after{content:'';position:absolute;top:50%;inset-inline-start:6px;width:16px;height:16px;border-radius:50%;background:var(--mut);transform:translateY(-50%);transition:.2s}
+.swc input:checked+i{background:var(--ink);border-color:var(--ink)}.swc input:checked+i:after{width:22px;height:22px;inset-inline-start:calc(100% - 26px);background:var(--on)}
+/* focus screen */
+.fo{position:fixed;inset:0;z-index:30;background:var(--page);display:none;flex-direction:column;align-items:center;justify-content:space-between;gap:16px;padding:calc(12px + env(safe-area-inset-top)) 20px calc(24px + env(safe-area-inset-bottom))}
+.fo.on{display:flex;animation:fi .25s}
+.fo .top{width:100%;display:flex;justify-content:space-between;align-items:center}
+.fo h1{text-align:center;margin:0 0 4px}
+.ring{position:relative;width:min(74vw,300px);aspect-ratio:1}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:6}.ring .bgc{stroke:var(--soft)}.ring .fg{stroke:var(--ink);stroke-linecap:round;transition:stroke-dashoffset 1s linear}
+.ring .in{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.ring .in b{font-size:clamp(46px,15vw,64px);font-weight:600;font-variant-numeric:tabular-nums;direction:ltr;line-height:1.1}
+.fo .acts{display:flex;gap:12px;width:100%;max-width:420px}.fo .acts .btn{flex:1;min-height:54px;font-size:15px}
+/* bottom sheet */
+.shd{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:45;display:none;align-items:flex-end;justify-content:center}
+.shd.on{display:flex}
+.sh{background:var(--bg);width:100%;max-width:560px;border-radius:24px 24px 0 0;padding:10px 20px calc(18px + env(safe-area-inset-bottom));animation:shu .25s ease}
+.sh:before{content:'';display:block;width:36px;height:4px;border-radius:2px;background:var(--bd);margin:0 auto 16px}
+@keyframes shu{from{transform:translateY(100%)}to{transform:none}}
+.sh>.btn{width:100%;margin-top:12px}.sh .row{margin-top:10px}
+.pop .btn.o{background:none;color:var(--on);border-color:rgba(127,127,127,.5)}#pA{margin-top:10px;justify-content:center}#pA .btn{margin:0;flex:1;max-width:160px}
 @media(max-width:600px){.g3:not(.st){grid-template-columns:1fr}.g2:has(input[type=datetime-local]){grid-template-columns:1fr}.st{gap:8px}.st b{font-size:15px}.frm.u{grid-template-columns:1fr 1fr}.frm.u input{grid-column:1/-1}.frm{grid-template-columns:1fr 1fr}.frm input:first-child{grid-column:1/-1}.bl{grid-template-columns:1fr 1fr}.bl input:first-child{grid-column:1/-1}}
 </style></head><body>
-<div class="ov splash on" id="splash" onclick="enter()"><div><div class="eb">90 DAY MODE</div><div class="game" style="margin:14px 0">THIS IS<br>THE GAME<br>NOW.</div><div class="sub" id="spP" style="direction:ltr;font-size:16px;color:var(--ink)"></div><div class="sub" style="margin-top:24px">اضغط للدخول</div></div></div>
-<div class="ov" id="reset"><div class="inn"><div class="eb" style="text-align:center">EMERGENCY RESET</div><div class="game" style="text-align:center;font-size:34px;margin:10px 0">توقف. تنفس. ارجع.</div><div id="rsP" style="text-align:center;font-weight:600;direction:ltr"></div>
+<div class="ov splash on" id="splash" onclick="enter()"><div><div class="eb">وضع الـ90 يومًا</div><div class="game" style="margin:14px 0">THIS IS<br>THE GAME<br>NOW.</div><div class="sub" id="spP" style="direction:ltr;font-size:16px;color:var(--ink)"></div><div class="sub" style="margin-top:24px">اضغط للدخول</div></div></div>
+<div class="ov" id="reset"><div class="inn"><div class="eb" style="text-align:center">لحظة توقف</div><div class="game" style="text-align:center;font-size:34px;margin:10px 0">توقف. تنفس. ارجع.</div><div id="rsP" style="text-align:center;font-weight:600;direction:ltr"></div>
 <div class="card" style="margin-top:16px"><div class="sub">باقٍ من الـ90 يومًا</div><div class="big" id="rsD"></div></div>
 <div class="card"><h2>لا أفعل</h2><div id="rsR"></div></div>
 <div class="card"><h2>فكرة جديدة تطاردني</h2><div class="row"><input id="rsI" placeholder="اكتبها في جملة"><button class="btn" onclick="idea('rsI')">أوقفها</button></div></div>
 <div class="card"><h2>مهمة غير مفيدة قمت بها</h2><div class="sub">تُسجَّل وتؤثر على مؤشر التشتت</div><textarea id="rsDm" rows="2" placeholder="ما الذي فعلته ولم يكن يخدم هدفك؟"></textarea><button class="btn r" style="margin-top:8px" onclick="dumb()">سجّلها</button></div>
 <button class="btn" style="width:100%;padding:14px" onclick="closeRs()">عدت إلى اللعبة</button></div></div>
-<div class="pop" id="pop"><b id="pT"></b><div id="pB" style="font-size:13px;opacity:.85"></div><button class="btn" onclick="$('pop').classList.remove('on')">حسنًا</button></div><div class="toast" id="toast"></div>
+<div class="pop" id="pop"><b id="pT"></b><div id="pB" style="font-size:13px;opacity:.85"></div><div class="row" id="pA"></div></div>
+<div class="fo" id="focus"><div class="top"><button class="x ib" onclick="closeF()" aria-label="تصغير"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button><span class="eb">وضع التركيز</span><span style="width:40px"></span></div>
+<div><h1 id="fT"></h1><div class="sub" id="fS" style="text-align:center"></div></div>
+<div class="ring"><svg viewBox="0 0 100 100"><circle class="bgc" cx="50" cy="50" r="45"/><circle class="fg" id="fR" cx="50" cy="50" r="45" stroke-dasharray="282.74" stroke-dashoffset="0"/></svg><div class="in"><b id="fM">00:00</b><span class="sub" id="fL"></span></div></div>
+<div style="width:100%;display:flex;flex-direction:column;align-items:center;gap:6px"><div class="acts"><button class="btn g" id="fP" onclick="pauseT()">إيقاف مؤقت</button><button class="btn" onclick="doneT()">تمت المهمة</button></div><button class="x" onclick="stopT();closeF()">إنهاء الجلسة دون إتمام المهمة</button></div></div>
+<div class="shd" id="endS" onclick="if(event.target==this)closeEnd()"><div class="sh"><div class="eb" style="text-align:center">انتهى الوقت</div><h2 id="eT" style="text-align:center;margin:6px 0 2px"></h2><div class="sub" id="eS" style="text-align:center"></div><button class="btn" onclick="endDone()">تمت المهمة</button><div class="row"><button class="btn g" onclick="endMore(5)">+5 دقائق</button><button class="btn g" onclick="endMore(15)">+15 دقيقة</button></div><button class="btn g" style="border-color:transparent" onclick="closeEnd()">لم أنتهِ بعد</button></div></div><div class="toast" id="toast"></div>
 
 <div class="wrap">
 <section class="page on" id="p1">
@@ -52,7 +90,7 @@ nav{position:fixed;bottom:0;left:0;right:0;background:var(--navbg);backdrop-filt
 <div class="card dist" id="dcard"><div class="row sp"><h2 style="margin:0">مؤشر التركيز</h2><span class="sub" id="dLbl"></span></div><div class="dm"><span>تركيز</span><div class="dtr"><i id="dpos" style="left:50%"></i></div><span>تشتت</span></div><div class="sub" id="dTxt"></div></div>
 <div class="card"><div class="cd"><div class="cb"><b id="cD">00</b><span>يوم</span></div><div class="cb"><b id="cH">00</b><span>ساعة</span></div><div class="cb"><b id="cM">00</b><span>دقيقة</span></div><div class="cb"><b id="cS">00</b><span>ثانية</span></div></div><div id="ph90"></div><div class="sub" id="moveTxt" style="text-align:center"></div></div>
 <div class="card"><div class="eb">دخل هذا الشهر</div><div class="big" id="dmM"></div><div class="sbar" id="dmB"></div><div class="g3 st"><div><div class="sub"><i class="sw" style="background:var(--c1)"></i>لي</div><b id="dmMe"></b></div><div><div class="sub"><i class="sw" style="background:var(--c3)"></i>أعمال خيرية</div><b id="dmCh"></b></div><div><div class="sub"><i class="sw" style="background:var(--c4)"></i>أمي</div><b id="dmMo"></b></div></div></div>
-<div class="card"><h2>Egypt Freedom Number</h2><div class="big" id="fn"></div><div class="sub" id="fnT"></div><div class="bar"><div id="fnB"></div></div><div class="sub" id="fnI"></div></div>
+<div class="card"><h2>رقم الحرية · مصر</h2><div class="big" id="fn"></div><div class="sub" id="fnT"></div><div class="bar"><div id="fnB"></div></div><div class="sub" id="fnI"></div></div>
 <div class="card"><h2>هدف الانتقال المالي</h2><div class="g2"><label>أشهر الأمان<input type="number" id="f_run" oninput="up('run',this.value,1)"></label><label>المدخر حاليًا<input type="number" id="f_saved" oninput="up('saved',this.value,1)"></label></div><div class="big" style="margin-top:12px" id="goal"></div><div class="bar"><div id="goalB"></div></div><div class="sub" id="goalT"></div><div id="fin" class="sub" style="margin-top:6px"></div></div>
 <div class="card"><h2>السجل الأسبوعي</h2><div class="sub" id="wkT"></div><div class="g3 st" style="margin:12px 0" id="wkS"></div><div id="wkC"></div><h3 style="margin-top:12px">ما أنجزته</h3><div id="wkA"></div><label style="margin-top:6px">ملاحظات<textarea rows="2" id="wa" oninput="upw('a',this.value)"></textarea></label><h3 style="margin-top:12px">ما عطّلني</h3><div id="wkB"></div><label style="margin-top:6px">ملاحظات<textarea rows="2" id="wb" oninput="upw('b',this.value)"></textarea></label></div>
 <div class="card"><h2>موقف الأفكار</h2><div class="row"><input id="ideaIn" placeholder="فكرة؟ اكتبها ولا تنفذها" onkeydown="if(event.key=='Enter')idea('ideaIn')"><button class="btn" onclick="idea('ideaIn')">إضافة</button></div><div id="ideas"></div></div>
@@ -63,7 +101,7 @@ nav{position:fixed;bottom:0;left:0;right:0;background:var(--navbg);backdrop-filt
 <section class="page" id="p3"><div class="dt"><button class="btn g" onclick="mv(-1)">›</button><div style="text-align:center"><b id="tdate" style="font-size:17px"></b><div class="sub" id="tsub"></div></div><button class="btn g" onclick="mv(1)">‹</button></div><div id="tlist"></div></section>
 
 <section class="page" id="p4"><div class="card"><div class="eb">هذا الشهر</div><div class="big" id="iM"></div><div class="sbar" id="iSB"></div><div class="g3 st"><div><div class="sub"><i class="sw" style="background:var(--c1)"></i>لي</div><b id="iMe"></b></div><div><div class="sub"><i class="sw" style="background:var(--c3)"></i>أعمال خيرية</div><b id="iCh"></b></div><div><div class="sub"><i class="sw" style="background:var(--c4)"></i>أمي</div><b id="iMo"></b></div></div></div>
-<div class="card"><div class="g3 st"><div><div class="sub">المصروف الشهري</div><b id="iE"></b></div><div><div class="sub">الصافي</div><b id="iN"></b></div><div><div class="sub">من Freedom Number</div><b id="iP"></b></div></div><div class="bar"><div id="iB"></div></div></div>
+<div class="card"><div class="g3 st"><div><div class="sub">المصروف الشهري</div><b id="iE"></b></div><div><div class="sub">الصافي</div><b id="iN"></b></div><div><div class="sub">من رقم الحرية</div><b id="iP"></b></div></div><div class="bar"><div id="iB"></div></div></div>
 <div class="card"><div class="eb">إضافة دخل</div><div class="sub" id="iSplit"></div><div class="g3" style="margin-top:10px"><label>المبلغ<input type="number" id="iA" oninput="prev()"></label><label>الفئة<select id="iC"></select></label><label>ملاحظة<input id="iNo"></label></div><div class="sub" id="iPrev" style="margin-top:8px"></div><button class="btn" style="margin-top:10px;width:100%" onclick="addInc()">إضافة</button></div>
 <div class="card"><h2>الدخل خلال آخر 6 أشهر</h2><div id="iCh6"></div></div>
 <div class="card"><h2>مصادر الدخل هذا الشهر</h2><div class="row" style="align-items:center" id="iTop"></div></div>
@@ -72,7 +110,7 @@ nav{position:fixed;bottom:0;left:0;right:0;background:var(--navbg);backdrop-filt
 
 <section class="page" id="p5"><div id="set"></div></section>
 </div>
-<div id="tbar"></div><button class="sos" onclick="openRs()" aria-label="Emergency Reset"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round"><circle cx="12" cy="12" r="9"/><path d="M10 9v6M14 9v6"/></svg>Reset</button>
+<div id="tbar"></div><button class="sos" onclick="openRs()" aria-label="لحظة توقف"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round"><circle cx="12" cy="12" r="9"/><path d="M10 9v6M14 9v6"/></svg>توقف</button>
 <nav><button id="n1" class="on" onclick="go(1)"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v10H3z"/><path d="M9 21v-6h6v6"/></svg>اللوحة</button><button id="n2" onclick="go(2)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>الهيكل</button><button id="n3" onclick="go(3)"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 9l2 2 4-4M8 16h8"/></svg>المهام</button><button id="n4" onclick="go(4)"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg>الدخل</button><button id="n5" onclick="go(5)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 00-.2-1.6l2-1.5-2-3.4-2.3 1A7 7 0 0014 5l-.4-2.5h-3.2L10 5a7 7 0 00-2.5 1.5l-2.3-1-2 3.4 2 1.5A7 7 0 005 12c0 .5.1 1 .2 1.6l-2 1.5 2 3.4 2.3-1A7 7 0 0010 19l.4 2.5h3.2L14 19a7 7 0 002.5-1.5l2.3 1 2-3.4-2-1.5c.1-.5.2-1 .2-1.6z"/></svg>الإعدادات</button></nav>
 
 <script>window.NATIVE=!!(window.Capacitor&&Capacitor.isNativePlatform&&Capacitor.isNativePlatform())</script>
@@ -101,12 +139,13 @@ const donut=parts=>{const T=parts.reduce((a,p)=>a+p[1],0),r=40,C=2*Math.PI*r;let
 let AC;const SND={chime:[[880,.18],[1175,.18],[1568,.4]],bell:[[523,.7],[659,.7]],beep:[[1000,.15],[0,.08],[1000,.15]],soft:[[440,.3],[554,.5]],digital:[[1200,.08,'square'],[900,.08,'square'],[1200,.08,'square']],alarm:[[880,.25,'sawtooth'],[660,.25,'sawtooth'],[880,.25,'sawtooth'],[660,.25,'sawtooth']]};
 function play(n){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();AC.resume&&AC.resume();let t=AC.currentTime;(SND[n]||SND.chime).forEach(([f,d,ty])=>{if(f){const o=AC.createOscillator(),g=AC.createGain();o.type=ty||'sine';o.frequency.value=f;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.25,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+d+.05)}t+=d})}catch(e){}}
 async function sysN(t,b){try{if(Notification.permission!='granted')return;const r=navigator.serviceWorker&&await navigator.serviceWorker.getRegistration();if(r)r.showNotification(t,{body:b,icon:'icon.svg',tag:t+b,vibrate:[200,100,200],renotify:true});else new Notification(t,{body:b})}catch(e){}}
-function fire(t,b,snd){play(snd);$('pT').textContent=t;$('pB').textContent=b;$('pop').classList.add('on');sysN(t,b)}
+function fire(t,b,snd,acts){play(snd);$('pT').textContent=t;$('pB').textContent=b;$('pA').innerHTML=acts||'<button class="btn" onclick="popX()">حسنًا</button>';$('pop').classList.add('on');sysN(t,b)}
+const popX=()=>$('pop').classList.remove('on');
 const FK='alwaleed-90-fired';let FI={};try{FI=JSON.parse(localStorage.getItem(FK))||{}}catch(e){}
-function chk(key,ts,t,b,snd){const n=Date.now();if(n<ts||n-ts>6e5||FI[key])return;FI[key]=1;try{localStorage.setItem(FK,JSON.stringify(FI))}catch(e){}fire(t,b,snd)}
+function chk(key,ts,t,b,snd,acts){const n=Date.now();if(n<ts||n-ts>6e5||FI[key])return;FI[key]=1;try{localStorage.setItem(FK,JSON.stringify(FI))}catch(e){}fire(t,b,snd,acts)}
 function notify(){const n=new Date(),k=iso(n);if(FI.d!=k){FI={d:k};}const at=m=>{const d=new Date(n);d.setHours(0,m,0,0);return d.getTime()},ld=num(S.lead);
  if(S.nt.prayer)P.forEach(p=>chk(k+p[0],at(tm(S.pt[p[0]])),'حان وقت صلاة '+p[1],'الوقت محجوز للصلاة',S.snd.prayer));
- if(S.nt.task)(S.tasks[k]||[]).forEach(t=>{if(!t.done&&t.s)chk(k+t.id,at(tm(t.s))-ld*6e4,t.t,(ld?`تبدأ بعد ${ld} دقائق`:'تبدأ الآن')+` · ${t.s} – ${t.e}`+(t.goal?'':' · تنبيه: لا تخدم هدفك'),S.snd.task)});
+ if(S.nt.task)(S.tasks[k]||[]).forEach(t=>{if(!t.done&&t.s)chk(k+t.id,at(tm(t.s))-ld*6e4,t.t,(ld?`تبدأ بعد ${ld} دقائق`:'تبدأ الآن')+` · ${t.s} – ${t.e}`+(t.goal?'':' · تنبيه: لا تخدم هدفك'),S.snd.task,`<button class="btn" onclick="popX();sw('${k}','${t.id}')">ابدأ المؤقت</button><button class="btn o" onclick="popX()">لاحقًا</button>`)});
  if(S.nt.block)S.blocks.forEach(b=>chk(k+b.id,at(tm(b.s)),'بدأت فترة: '+b.n,`${b.s} – ${b.e}`,S.snd.block))}
 /* stats */
 function stats(){const m=new Date(wk()+'T00:00'),ds=[...Array(7)].map((_,i)=>{const x=new Date(m);x.setDate(m.getDate()+i);return iso(x)});let gp=0,gd=0,ng=0,mins=0,bars=[],done=[];ds.forEach(d=>{let c=0;(S.tasks[d]||[]).forEach(t=>{if(t.goal){gp++;mins+=t.spent||0;if(t.done){gd++;c++;done.push(t.t)}}else ng++});bars.push(c)});
@@ -134,7 +173,7 @@ function calc(){const now=new Date(),st=new Date(S.start).getTime()||Date.now(),
  if(S.move){const d=Math.ceil((new Date(S.move+'T00:00')-now)/DAY);$('moveTxt').textContent=d>0?`باقٍ ${d} يوم على الانتقال إلى مصر`:'حان موعد الانتقال'}else $('moveTxt').textContent='حدد تاريخ الانتقال من الإعدادات';
  const ds=focusR(),warn=ds.r<.4&&ds.decay>0;$('dpos').style.left=ds.r*100+'%';$('dcard').style.setProperty('--fc',`hsl(${Math.round(ds.r*130)} 55% 46%)`);$('dcard').classList.toggle('warn',warn);$('dLbl').textContent=ds.r>=1?'تركيز كامل':ds.r>=.6?'مركّز':ds.r<.4?'مشتت':'متوسط';$('dTxt').textContent=`أنجزت اليوم ${dur(Math.round(ds.f))} من ${dur(ds.tgt)}`+(ds.d?` · تشتت ${dur(Math.round(ds.d))}`:'')+(ds.run?' · المؤقت يعمل الآن':ds.decay&&ds.r<1?(ds.idle>=24?' · لم تعمل على أي مهمة اليوم بعد':` · بلا عمل منذ ${ago(ds.idle)}`):'');
  const s=stats(),M=monthSum(mon());$('dmM').textContent=fmt(M.a);$('dmB').innerHTML=sbar(M);$('dmMe').textContent=fmt(M.me);$('dmCh').textContent=fmt(M.ch);$('dmMo').textContent=fmt(M.mo);
- const mo=sum(S.cm),fn=mo*(1+num(S.buf)/100),p=fn?Math.min(100,M.a/fn*100):0;$('fn').textContent=fmt(fn)+' / شهر';$('fnT').textContent=`تكلفة المعيشة ${fmt(mo)} + هامش أمان ${S.buf}%`;$('fnB').style.width=p+'%';$('fnI').textContent=`دخل هذا الشهر منذ بدايته ${fmt(M.a)} = ${Math.round(p)}% من Freedom Number`;
+ const mo=sum(S.cm),fn=mo*(1+num(S.buf)/100),p=fn?Math.min(100,M.a/fn*100):0;$('fn').textContent=fmt(fn)+' / شهر';$('fnT').textContent=`تكلفة المعيشة ${fmt(mo)} + هامش أمان ${S.buf}%`;$('fnB').style.width=p+'%';$('fnI').textContent=`دخل هذا الشهر منذ بدايته ${fmt(M.a)} = ${Math.round(p)}% من رقم الحرية`;
  const one=sum(S.c1),g=one+mo*S.run,rem=Math.max(0,g-S.saved);$('goal').textContent=fmt(g);$('goalB').style.width=(g?Math.min(100,S.saved/g*100):0)+'%';let t=`المدخر ${fmt(S.saved)} · المتبقي ${fmt(rem)}`;if(S.move&&rem>0){const mm=Math.max(1,(new Date(S.move+'T00:00')-now)/DAY/30.4);t+=` · تحتاج ادخار ${fmt(rem/mm)} شهريًا`}$('goalT').textContent=t;
  $('fin').innerHTML=`لمرة واحدة: ${fmt(one)} (سفر ${fmt(num(S.c1.visa)+num(S.c1.ticket))}) + ${S.run} أشهر × ${fmt(mo)} = ${fmt(mo*S.run)}`;
  $('wkT').textContent='أسبوع يبدأ '+wk();$('wkS').innerHTML=[['مؤشر الأسبوع',s.sc+'/100'],['مهام منجزة',s.gd+' من '+s.gp],['وقت التركيز',dur(Math.round(s.mins))]].map(x=>`<div><div class="sub">${x[0]}</div><b>${x[1]}</b></div>`).join('');
@@ -144,8 +183,21 @@ function calc(){const now=new Date(),st=new Date(S.start).getTime()||Date.now(),
  $('ideas').innerHTML=S.ideas.map((x,i)=>`<div class="item"><span>${esc(x)}</span><button class="x" onclick="S.ideas.splice(${i},1);save();calc()">حذف</button></div>`).join('')}
 function fill(){$('f_run').value=S.run;$('f_saved').value=S.saved||'';const w=S.logs[wk()]||{a:'',b:''};$('wa').value=w.a;$('wb').value=w.b}
 function tick(){const r=ms0();setN('cD',pad(Math.floor(r/DAY)));setN('cH',pad(Math.floor(r%DAY/36e5)));setN('cM',pad(Math.floor(r%36e5/6e4)));setN('cS',pad(Math.floor(r%6e4/1e3)));
- const T=S.timer;if(T){const rem=trem(T);if(rem<=0&&T.run)stopT(1);else if($('tm'))$('tm').textContent=T.run?fm(rem):'راحة '+fm(Date.now()-T.bs)}
+ const T=S.timer;if(T){const rem=trem(T);if(rem<=0&&T.run)stopT(1);else if($('tm'))$('tm').textContent=T.run?fm(rem):'راحة '+fm(Date.now()-T.bs);focusU()}
  notify()}
+/* focus screen and end-of-timer sheet */
+let EK=null,BT;
+const openF=()=>{if(!S.timer)return;$('focus').classList.add('on');focusU()},closeF=()=>$('focus').classList.remove('on');
+function focusU(){const T=S.timer;if(!T){closeF();return}if(!$('focus').classList.contains('on'))return;const t=TK(T.k,T.id),rem=trem(T),p=Math.max(0,Math.min(1,rem/(T.dur*6e4)));
+ setN('fT',t?t.t:'');setN('fS',t&&t.s?`${t.s} – ${t.e}`:'مهمة غير مجدولة');setN('fM',fm(rem));setN('fL',T.run?'متبقٍ':'متوقف مؤقتًا');$('fR').style.strokeDashoffset=(282.74*(1-p)).toFixed(2);setN('fP',T.run?'إيقاف مؤقت':'استئناف')}
+const markDone=(k,id)=>{const t=TK(k,id);if(t&&!t.done){t.done=1;act();save();if(page==3)tasksR();calc()}};
+function doneT(){const T=S.timer;if(!T)return;const k=T.k,id=T.id;stopT();markDone(k,id);closeF();toast('أحسنت، أُنجزت المهمة')}
+function showEnd(k,t){EK=[k,t.id];$('eT').textContent=t.t;$('eS').textContent=`سجّلت ${dur(Math.round(t.spent||0))} من التركيز على هذه المهمة`;closeF();$('endS').classList.add('on');ring()}
+// on Android the notification channel rings the bell; ring in-app only when it can't
+function ring(){clearInterval(BT);if(window.NATIVE&&window.NPS=='granted')return;let n=0;const r=()=>{play('bell');try{navigator.vibrate&&navigator.vibrate([300,150,300])}catch(e){}};r();BT=setInterval(()=>{if(++n>=3||!$('endS').classList.contains('on'))return clearInterval(BT);r()},1600)}
+const closeEnd=()=>{clearInterval(BT);$('endS').classList.remove('on')},endDone=()=>{if(EK)markDone(...EK);closeEnd();toast('أحسنت، أُنجزت المهمة')},
+ endMore=m=>{closeEnd();if(!EK)return;const [k,id]=EK;act();S.timer={k,id,dur:m,el:0,last:Date.now(),run:1,bs:0};save();tbar();openF();calc();hookT()};
+const hookT=()=>{window.onTimer&&onTimer()};
 const fm=ms=>pad(Math.floor(Math.max(0,ms)/6e4))+':'+pad(Math.floor(Math.max(0,ms)%6e4/1e3));
 function idea(id){const v=$(id).value.trim();if(!v)return;S.ideas.push(v);$(id).value='';save();calc();toast('تم إيقاف الفكرة — عد للهدف')}
 function dumb(){const v=$('rsDm').value.trim();if(!v)return toast('اكتب المهمة');S.log.push({type:'dumb',text:v,d:iso(new Date())});$('rsDm').value='';save();calc();toast('سُجلت')}
@@ -181,10 +233,10 @@ const tt=(k,id,f)=>{const t=TK(k,id);t[f]=t[f]?0:1;act();save();if(page==3)tasks
 const trem=T=>T.dur*6e4-T.el-(T.run?Date.now()-T.last:0);
 /* timer length: a scheduled task started today after its start time only gets the time left until its end */
 const tdur=(k,t)=>{if(!t.s)return 25;const s=tm(t.s),e=tm(t.e),n=nowM();return k==iso(new Date())&&n>s&&n<e?e-n:e-s};
-function sw(k,id){if(S.timer)stopT();act();const t=TK(k,id);S.timer={k,id,dur:tdur(k,t),el:0,last:Date.now(),run:1,bs:0};save();tbar();play('beep');calc()}
-function pauseT(){const T=S.timer;if(!T)return;if(T.run){T.el+=Date.now()-T.last;T.run=0;T.bs=Date.now()}else{T.run=1;T.last=Date.now()}save();tbar()}
-function stopT(fin){const T=S.timer;if(!T)return;act();const el=T.el+(T.run?Date.now()-T.last:0),t=TK(T.k,T.id);if(t)t.spent=Math.round(((t.spent||0)+Math.min(T.dur,el/6e4))*10)/10;S.timer=null;save();tbar();if(fin&&t)fire('انتهى وقت المهمة',t.t,S.snd.task);if(page==3)tasksR();calc()}
-function tbar(){const T=S.timer,b=$('tbar');if(!T){b.style.display='none';return}const t=TK(T.k,T.id);b.style.display='flex';b.innerHTML=`<span>${esc(t?t.t:'')}</span><b id="tm"></b><span><button class="btn o" onclick="pauseT()">${T.run?'راحة':'استئناف'}</button> <button class="btn" onclick="stopT()">إنهاء</button></span>`}
+function sw(k,id){if(S.timer)stopT();act();const t=TK(k,id);S.timer={k,id,dur:tdur(k,t),el:0,last:Date.now(),run:1,bs:0};save();tbar();play('beep');calc();openF();hookT()}
+function pauseT(){const T=S.timer;if(!T)return;if(T.run){T.el+=Date.now()-T.last;T.run=0;T.bs=Date.now()}else{T.run=1;T.last=Date.now()}save();tbar();focusU();hookT()}
+function stopT(fin){const T=S.timer;if(!T)return;act();const el=T.el+(T.run?Date.now()-T.last:0),t=TK(T.k,T.id);if(t)t.spent=Math.round(((t.spent||0)+Math.min(T.dur,el/6e4))*10)/10;S.timer=null;save();tbar();hookT();if(fin&&t)showEnd(T.k,t);if(page==3)tasksR();calc()}
+function tbar(){const T=S.timer,b=$('tbar');if(!T){b.style.display='none';return}const t=TK(T.k,T.id);b.style.display='flex';b.innerHTML=`<span onclick="openF()" style="flex:1;min-width:0;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(t?t.t:'')}</span><b id="tm" onclick="openF()" style="cursor:pointer"></b><span style="flex:none"><button class="btn o" onclick="pauseT()">${T.run?'راحة':'استئناف'}</button> <button class="btn" onclick="stopT()">إنهاء</button></span>`}
 /* income */
 const prev=()=>{const a=num($('iA').value);$('iPrev').textContent=a?`لي ${fmt(a*(1-(S.split.ch+S.split.mo)/100))} · أعمال خيرية ${fmt(a*S.split.ch/100)} · أمي ${fmt(a*S.split.mo/100)}`:''};
 function addInc(){const a=num($('iA').value);if(!a)return toast('أدخل المبلغ');S.inc.push({id:Date.now(),d:iso(new Date()),a,ch:a*S.split.ch/100,mo:a*S.split.mo/100,cat:$('iC').value,note:$('iNo').value});$('iA').value=$('iNo').value='';prev();save();incR();calc();toast('تمت الإضافة وتقسيمها')}
@@ -201,19 +253,39 @@ const F=(l,p,t='number')=>`<label>${l}<input type="${t}" value="${esc(gp(p)??'')
 SL=(l,p)=>`<label>${l}<select onchange="up('${p}',this.value);play(this.value)">${Object.entries(SNL).map(([k,v])=>`<option value="${k}" ${gp(p)==k?'selected':''}>${v}</option>`).join('')}</select></label>`,CB=(l,p)=>`<label class="row" style="color:var(--ink)"><input type="checkbox" style="width:auto;flex:none" ${gp(p)?'checked':''} onchange="up('${p}',this.checked?1:0,1)">${l}</label>`;
 function setSplit(k,v){v=Math.max(0,Math.min(100,num(v)));S.split[k]=v;if(S.split.ch+S.split.mo>100){S.split[k]=100-S.split[k=='ch'?'mo':'ch'];toast('مجموع النسب لا يتجاوز 100%')}save();paint();$('spMe').textContent=100-S.split.ch-S.split.mo+'%'}
 function perm(){try{Notification.requestPermission().then(r=>{toast('الإشعارات: '+({granted:'مفعّلة',denied:'محظورة من المتصفح',default:'لم يتم الاختيار'}[r]));setR()})}catch(e){toast('المتصفح لا يدعم الإشعارات')}}
-function setR(){const L1={visa:'التأشيرة',ticket:'تذكرة الطيران',net:'توصيل الإنترنت',resid:'رسوم الإقامة (لسنة)',transp:'مواصلات للوصول للسكن',setup:'فرش وتجهيز'},L2={rent:'الإيجار',utils:'فواتير الخدمات (ماء/كهرباء/غاز)',inet:'اشتراك الإنترنت',food:'الطعام والتموين',trans:'المواصلات',pers:'مصاريف شخصية وطوارئ'},ps=window.NPS||(window.Notification?Notification.permission:'unsupported'),now=new Date();
- $('set').innerHTML=`<div class="card"><h1>الإعدادات</h1><div class="sub">التاريخ والوقت من جهازك: ${now.toLocaleDateString(LOC,{weekday:'long',day:'numeric',month:'long',year:'numeric'})}</div></div>
-<div class="card"><h2>المظهر</h2><label>وضع العرض<select onchange="setTheme(this.value)"><option value="auto" ${S.theme=='auto'?'selected':''}>تلقائي (حسب الهاتف)</option><option value="light" ${S.theme=='light'?'selected':''}>فاتح</option><option value="dark" ${S.theme=='dark'?'selected':''}>داكن</option></select></label></div>
-<div class="card"><h2>الترحيب والقواعد</h2>${F('اسمك في رسالة الترحيب','name','text')}<div style="height:8px"></div>${TA('عبارات شاشة البداية (سطر لكل عبارة)','phrases',4)}<div style="height:8px"></div>${TA('قواعد «لا أفعل» (الشريط المتحرك)','rules',6)}<div style="height:8px"></div>${TA('أسماء المراحل الأربع','msn',4)}</div>
-<div class="card"><h2>التواريخ والعملة</h2><div class="g2">${F('بداية الـ90 يومًا','start','datetime-local')}${F('تاريخ الانتقال إلى مصر','move','date')}${F('العملة','cur','text')}${F('هامش أمان Freedom Number %','buf')}</div></div>
-<div class="card"><h2>تقسيم الدخل</h2><div class="g3"><label>أعمال خيرية %<input type="number" value="${S.split.ch}" oninput="setSplit('ch',this.value)"></label><label>أمي %<input type="number" value="${S.split.mo}" oninput="setSplit('mo',this.value)"></label><label>لي<div style="font-size:20px;font-weight:700;margin-top:8px" id="spMe">${100-S.split.ch-S.split.mo}%</div></label></div><div class="sub" style="margin-top:6px">تُطبَّق على كل دخل جديد، ولا تغيّر الإدخالات المسجلة سابقًا.</div></div>
-<div class="card"><h2>تكاليف الانتقال لمرة واحدة</h2><div class="g2">${Object.keys(L1).map(k=>F(L1[k],'c1.'+k)).join('')}</div></div>
-<div class="card"><h2>التكاليف الشهرية</h2><div class="g2">${Object.keys(L2).map(k=>F(L2[k],'cm.'+k)).join('')}</div></div>
-<div class="card"><h2>مؤشر التركيز</h2>${F('ساعات العمل اليومية للوصول إلى التركيز الكامل','fh')}<div class="sub" style="margin-top:6px">تتحرك الدائرة نحو التركيز بقدر ساعات العمل المنجزة على مهام تخدم هدفك (بالمؤقت أو بإتمام المهمة). وقت المهام التي لا تخدمك يُخصم منها. يتدرج اللون من الأحمر إلى الأخضر عند بلوغ الهدف، وتومض الدائرة إذا مرّت 30 دقيقة بلا عمل وهي في جهة التشتت.</div></div>
-<div class="card"><h2>مواعيد الصلاة</h2><div class="g3">${P.map(p=>F(p[1],'pt.'+p[0],'time')).join('')}</div><div class="sub" style="margin-top:6px">أدخل المواعيد كما في تقويم مدينتك، وعدّلها عند تغيّرها.</div></div>
-<div class="card"><h2>الإشعارات والأصوات</h2><div class="sub" style="margin-bottom:8px">إذن الإشعارات: <b style="color:var(--ink)">${{granted:'مفعّل',denied:'محظور',default:'لم يُطلب',unsupported:'غير مدعوم'}[ps]}</b></div>${CB('تنبيه الصلوات','nt.prayer')}${CB('تنبيه المهام','nt.task')}${CB('تنبيه بداية الفترات (هيكل اليوم)','nt.block')}<div style="height:8px"></div><div class="g2">${F('تنبيه المهمة قبل بدايتها (دقيقة)','lead')}</div><div class="g3" style="margin-top:8px">${SL('صوت الصلاة','snd.prayer')}${SL('صوت المهام','snd.task')}${SL('صوت الفترات','snd.block')}</div><div class="row" style="margin-top:10px"><button class="btn" onclick="perm()">السماح بالإشعارات</button><button class="btn g" onclick="fire('تنبيه تجريبي','يعمل التنبيه بنجاح','chime')">تجربة</button></div><div class="sub" style="margin-top:8px">التنبيهات تعمل والتطبيق مفتوح أو في الخلفية ما دام المتصفح لم يغلقه النظام. على الآيفون أضف الموقع إلى الشاشة الرئيسية أولًا.</div></div>
-<div class="card"><h2>فئات الدخل</h2>${TA('سطر لكل فئة','cats',5)}</div>
-<div class="card"><h2>البيانات</h2><div class="row"><button class="btn g" onclick="exp()">تصدير</button><button class="btn g" onclick="$('imp').click()">استيراد</button><button class="btn r" onclick="if(confirm('حذف كل البيانات؟')){localStorage.removeItem(K);location.reload()}">مسح الكل</button></div><input type="file" id="imp" hidden accept=".json" onchange="imp(this)"></div>`}
+function setR(){const L1={visa:'التأشيرة',ticket:'تذكرة الطيران',net:'توصيل الإنترنت',resid:'رسوم الإقامة (لسنة)',transp:'مواصلات للوصول للسكن',setup:'فرش وتجهيز'},L2={rent:'الإيجار',utils:'فواتير الخدمات',inet:'اشتراك الإنترنت',food:'الطعام والتموين',trans:'المواصلات',pers:'مصاريف شخصية وطوارئ'},ps=window.NPS||(window.Notification?Notification.permission:'unsupported');
+ const RW=(t,sm,c)=>`<div class="rw"><div class="lb"><b>${t}</b>${sm?`<small>${sm}</small>`:''}</div>${c}</div>`,
+  NI=(t,sm,p,ty='number',w='')=>RW(t,sm,`<input class="ci ${w}" type="${ty}" value="${esc(gp(p)??'')}" aria-label="${t}" oninput="up('${p}',this.value,${ty=='number'?1:0})">`),
+  SWI=(t,sm,p)=>RW(t,sm,`<label class="swc"><input type="checkbox" ${gp(p)?'checked':''} aria-label="${t}" onchange="up('${p}',this.checked?1:0,1)"><i></i></label>`),
+  SS=(t,p)=>RW(t,'',`<select class="ci" aria-label="${t}" onchange="up('${p}',this.value);play(this.value)">${Object.entries(SNL).map(([k,v])=>`<option value="${k}" ${gp(p)==k?'selected':''}>${v}</option>`).join('')}</select>`),
+  TX=(t,sm,p,r)=>`<div class="rw col"><div class="lb"><b>${t}</b>${sm?`<small>${sm}</small>`:''}</div><textarea rows="${r}" aria-label="${t}" oninput="upl('${p}',this.value)">${esc(gp(p).join('\n'))}</textarea></div>`,
+  G=(h,body,ft)=>`<div class="gh">${h}</div><div class="grp">${body}</div>${ft?`<div class="ft">${ft}</div>`:''}`,
+  TH={auto:'حسب الهاتف',light:'فاتح',dark:'داكن'},
+  pst={granted:'مفعّلة',denied:'محظورة، فعّلها من إعدادات الهاتف',default:'لم يُمنح الإذن بعد',unsupported:'غير مدعومة في هذا المتصفح'}[ps]||'';
+ $('set').innerHTML=`<h1 style="margin:6px 6px 0">الإعدادات</h1>`
+ +G('عام',NI('اسمك','يظهر في رسالة الترحيب','name','text','w')
+   +RW('المظهر',TH[S.theme],`<select class="ci" aria-label="المظهر" onchange="setTheme(this.value);setR()">${Object.entries(TH).map(([k,v])=>`<option value="${k}" ${S.theme==k?'selected':''}>${v}</option>`).join('')}</select>`))
+ +G('التركيز والمهام',NI('هدف العمل اليومي','عدد الساعات التي تملأ مؤشر التركيز','fh')+NI('التنبيه قبل بداية المهمة','بالدقائق، و0 يعني عند البداية','lead'),
+   'يتقدم مؤشر التركيز بقدر ساعات العمل على مهام تخدم هدفك، بالمؤقت أو بإتمام المهمة. وقت المهام التي لا تخدمك يُخصم منه.')
+ +G('الإشعارات',RW('إذن الإشعارات',pst,ps=='granted'?'':`<button class="btn" onclick="perm()">السماح</button>`)
+   +SWI('بداية المهام','إشعار مع زر لبدء المؤقت','nt.task')+SWI('أوقات الصلاة','','nt.prayer')+SWI('بداية فترات اليوم','حسب هيكل اليوم','nt.block')
+   +SS('صوت المهام','snd.task')+SS('صوت الصلاة','snd.prayer')+SS('صوت الفترات','snd.block')
+   +RW('تجربة التنبيه','',`<button class="btn g" onclick="fire('تنبيه تجريبي','يعمل التنبيه بنجاح','chime')">تجربة</button>`),
+   window.NATIVE?'عند انتهاء مؤقت المهمة يرن جرس، ويظهر في الإشعار زر «تمت المهمة» وزر «+5 دقائق».':'في المتصفح تعمل التنبيهات ما دام التطبيق مفتوحًا أو في الخلفية.')
+ +G('مواعيد الصلاة',P.map(p=>NI(p[1],'','pt.'+p[0],'time')).join(''),'أدخل المواعيد كما في تقويم مدينتك، وعدّلها عند تغيّرها.')
+ +G('خطة الـ90 يومًا',NI('بداية الـ90 يومًا','','start','datetime-local','w')+NI('تاريخ الانتقال إلى مصر','','move','date','w')
+   +TX('أسماء المراحل الأربع','سطر لكل مرحلة','msn',4)+TX('قواعد «لا أفعل»','تظهر في الشريط المتحرك، سطر لكل قاعدة','rules',5)+TX('عبارات شاشة البداية','سطر لكل عبارة','phrases',3))
+ +G('تقسيم الدخل',RW('أعمال خيرية','نسبة من كل دخل جديد',`<input class="ci" type="number" value="${S.split.ch}" aria-label="أعمال خيرية" oninput="setSplit('ch',this.value)">`)
+   +RW('أمي','نسبة من كل دخل جديد',`<input class="ci" type="number" value="${S.split.mo}" aria-label="أمي" oninput="setSplit('mo',this.value)">`)
+   +RW('نصيبك','يُحسب تلقائيًا',`<b id="spMe" style="font-size:17px;padding-inline-end:8px">${100-S.split.ch-S.split.mo}%</b>`),'تُطبَّق النسب على كل دخل جديد، ولا تغيّر الإدخالات السابقة.')
+ +G('رقم الحرية',NI('العملة','','cur','text')+NI('هامش الأمان','نسبة مئوية فوق تكلفة المعيشة','buf'))
+ +G('التكاليف الشهرية في مصر',Object.keys(L2).map(k=>NI(L2[k],'','cm.'+k)).join(''))
+ +G('تكاليف الانتقال لمرة واحدة',Object.keys(L1).map(k=>NI(L1[k],'','c1.'+k)).join(''))
+ +G('فئات الدخل',TX('الفئات','سطر لكل فئة','cats',5))
+ +G('البيانات',RW('تصدير نسخة احتياطية','ملف بكل بياناتك',`<button class="btn g" onclick="exp()">تصدير</button>`)
+   +RW('استيراد نسخة احتياطية','يستبدل البيانات الحالية',`<button class="btn g" onclick="$('imp').click()">استيراد</button>`)
+   +RW('مسح كل البيانات','لا يمكن التراجع عن ذلك',`<button class="btn r" onclick="if(confirm('حذف كل البيانات؟')){localStorage.removeItem(K);location.reload()}">مسح</button>`))
+ +'<input type="file" id="imp" hidden accept=".json" onchange="imp(this)"><div style="height:12px"></div>'}
 function exp(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:'application/json'}));a.download='alwaleed-90-backup.json';a.click()}
 function imp(el){const f=el.files[0];if(f)f.text().then(t=>{try{S=load(JSON.parse(t));save();fill();paint();setR();toast('تم الاستيراد')}catch(e){toast('ملف غير صالح')}})}
 function applyTheme(){const t=S.theme=='auto'?(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'):S.theme;document.documentElement.dataset.theme=t;$('tc').content=t=='dark'?'#0b0b0c':'#f2f1ed';return t}
