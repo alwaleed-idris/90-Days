@@ -76,6 +76,7 @@ nav{position:fixed;bottom:0;left:0;right:0;background:var(--navbg);backdrop-filt
 <div id="tbar"></div><button class="sos" onclick="openRs()">Emergency Reset</button>
 <nav><button id="n1" class="on" onclick="go(1)"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v10H3z"/><path d="M9 21v-6h6v6"/></svg>اللوحة</button><button id="n2" onclick="go(2)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>الهيكل</button><button id="n3" onclick="go(3)"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 9l2 2 4-4M8 16h8"/></svg>المهام</button><button id="n4" onclick="go(4)"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg>الدخل</button><button id="n5" onclick="go(5)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 00-.2-1.6l2-1.5-2-3.4-2.3 1A7 7 0 0014 5l-.4-2.5h-3.2L10 5a7 7 0 00-2.5 1.5l-2.3-1-2 3.4 2 1.5A7 7 0 005 12c0 .5.1 1 .2 1.6l-2 1.5 2 3.4 2.3-1A7 7 0 0010 19l.4 2.5h3.2L14 19a7 7 0 002.5-1.5l2.3 1 2-3.4-2-1.5c.1-.5.2-1 .2-1.6z"/></svg>الإعدادات</button></nav>
 
+<script>window.NATIVE=!!(window.Capacitor&&Capacitor.isNativePlatform&&Capacitor.isNativePlatform())</script>
 <script>
 const K='alwaleed-90-v3',$=id=>document.getElementById(id),DAY=864e5,pad=n=>String(n).padStart(2,'0'),LOC='ar-u-nu-latn';
 const iso=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -189,7 +190,7 @@ const F=(l,p,t='number')=>`<label>${l}<input type="${t}" value="${esc(gp(p)??'')
 SL=(l,p)=>`<label>${l}<select onchange="up('${p}',this.value);play(this.value)">${Object.entries(SNL).map(([k,v])=>`<option value="${k}" ${gp(p)==k?'selected':''}>${v}</option>`).join('')}</select></label>`,CB=(l,p)=>`<label class="row" style="color:var(--ink)"><input type="checkbox" style="width:auto;flex:none" ${gp(p)?'checked':''} onchange="up('${p}',this.checked?1:0,1)">${l}</label>`;
 function setSplit(k,v){v=Math.max(0,Math.min(100,num(v)));S.split[k]=v;if(S.split.ch+S.split.mo>100){S.split[k]=100-S.split[k=='ch'?'mo':'ch'];toast('مجموع النسب لا يتجاوز 100%')}save();paint();$('spMe').textContent=100-S.split.ch-S.split.mo+'%'}
 function perm(){try{Notification.requestPermission().then(r=>{toast('الإشعارات: '+({granted:'مفعّلة',denied:'محظورة من المتصفح',default:'لم يتم الاختيار'}[r]));setR()})}catch(e){toast('المتصفح لا يدعم الإشعارات')}}
-function setR(){const L1={visa:'التأشيرة',ticket:'تذكرة الطيران',net:'توصيل الإنترنت',resid:'رسوم الإقامة (لسنة)',transp:'مواصلات للوصول للسكن',setup:'فرش وتجهيز'},L2={rent:'الإيجار',utils:'فواتير الخدمات (ماء/كهرباء/غاز)',inet:'اشتراك الإنترنت',food:'الطعام والتموين',trans:'المواصلات',pers:'مصاريف شخصية وطوارئ'},ps=window.Notification?Notification.permission:'unsupported',now=new Date();
+function setR(){const L1={visa:'التأشيرة',ticket:'تذكرة الطيران',net:'توصيل الإنترنت',resid:'رسوم الإقامة (لسنة)',transp:'مواصلات للوصول للسكن',setup:'فرش وتجهيز'},L2={rent:'الإيجار',utils:'فواتير الخدمات (ماء/كهرباء/غاز)',inet:'اشتراك الإنترنت',food:'الطعام والتموين',trans:'المواصلات',pers:'مصاريف شخصية وطوارئ'},ps=window.NPS||(window.Notification?Notification.permission:'unsupported'),now=new Date();
  $('set').innerHTML=`<div class="card"><h1>الإعدادات</h1><div class="sub">التاريخ والوقت من جهازك: ${now.toLocaleDateString(LOC,{weekday:'long',day:'numeric',month:'long',year:'numeric'})}</div></div>
 <div class="card"><h2>المظهر</h2><label>وضع العرض<select onchange="setTheme(this.value)"><option value="auto" ${S.theme=='auto'?'selected':''}>تلقائي (حسب الهاتف)</option><option value="light" ${S.theme=='light'?'selected':''}>فاتح</option><option value="dark" ${S.theme=='dark'?'selected':''}>داكن</option></select></label></div>
 <div class="card"><h2>الهيدر والقواعد</h2>${TA('عبارات الهيدر المتحركة (سطر لكل عبارة)','phrases',4)}<div style="height:8px"></div>${TA('قواعد «لا أفعل» (الشريط المتحرك)','rules',6)}<div style="height:8px"></div>${TA('أسماء المراحل الأربع','msn',4)}</div>
@@ -207,7 +208,8 @@ function applyTheme(){const t=S.theme=='auto'?(matchMedia('(prefers-color-scheme
 const togTheme=()=>{S.theme=applyTheme()=='dark'?'light':'dark';save();applyTheme()},setTheme=v=>{S.theme=v;save();applyTheme()};
 matchMedia('(prefers-color-scheme:dark)').addEventListener('change',()=>{if(S.theme=='auto')applyTheme()});applyTheme();
 if(sessionStorage.getItem('seen'))$('splash').classList.remove('on');
-if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+if('serviceWorker' in navigator&&!window.NATIVE)navigator.serviceWorker.register('sw.js').catch(()=>{});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden){calc();notify();if(page==2)structR();if(page==3)tasksR()}});
 fill();paint();ph();tbar();tick();setInterval(tick,1000);setInterval(ph,4500);setInterval(()=>{calc();refAvail();if(page==2)structR()},30000);
-</script></body></html>
+</script>
+<script src="native.js"></script></body></html>
