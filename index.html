@@ -124,7 +124,7 @@ const BL0=[['قيام الليل','03:00','04:00'],['صلاة الفجر وال�
 const def={phrases:['THIS IS THE GAME NOW.','Alwaleed Idris → Income → Egypt','Build. Earn. Move.'],start:iso(new Date())+'T00:00',move:'',cur:'USD',buf:15,c1:{visa:0,ticket:0,net:0,resid:0,transp:0,setup:0},cm:{rent:0,utils:0,inet:0,food:0,trans:0,pers:0},run:3,saved:0,msn:['مصر','الاستقرار','الزواج','السعودية'],rules:['لا مشروع جديد','لا شراكة جديدة','لا أطارد فكرة جديدة','لا أعمل ما يمكن تفويضه','الفكرة تُكتب ولا تُنفذ'],cats:['عمل حر','راتب','مشروع','عمولة','أخرى'],split:{ch:7,mo:3},blocks:BL0,pt:{fajr:'05:00',dhuhr:'12:00',asr:'15:30',maghrib:'18:00',isha:'19:30'},theme:'auto',lead:0,fh:8,name:'الوليد',snd:{prayer:'bell',task:'chime',block:'soft'},nt:{prayer:1,task:1,block:1},tasks:{},inc:[],log:[],logs:{},ideas:[],timer:null};
 const mrg=(a,b)=>{for(const k in b){if(b[k]&&typeof b[k]=='object'&&!Array.isArray(b[k])&&a[k]&&typeof a[k]=='object')mrg(a[k],b[k]);else a[k]=b[k]}return a};
 const load=o=>mrg(JSON.parse(JSON.stringify(def)),o||{});let S;try{S=load(JSON.parse(localStorage.getItem(K)))}catch(e){S=load()}
-const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}},num=v=>Number(v)||0,fmt=n=>Math.round(n).toLocaleString('en-US')+' '+S.cur,sum=o=>Object.values(o).reduce((a,b)=>a+num(b),0);
+const save=()=>{window.onSave&&onSave();try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}},num=v=>Number(v)||0,fmt=n=>Math.round(n).toLocaleString('en-US')+' '+S.cur,sum=o=>Object.values(o).reduce((a,b)=>a+num(b),0);
 const gp=p=>p.split('.').reduce((o,k)=>o[k],S),toast=t=>{const e=$('toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display='none',2000)};
 function up(p,v,n){const k=p.split('.');let o=S;for(let i=0;i<k.length-1;i++)o=o[k[i]];o[k[k.length-1]]=n?num(v):v;save();paint()}
 const upl=(p,v)=>{const a=v.split('\n').map(x=>x.trim()).filter(Boolean);if(p=='msn')for(let i=0;i<4;i++)a[i]=a[i]||def.msn[i];S[p]=a.length?a:def[p];save();paint()};
@@ -282,6 +282,7 @@ function setR(){const L1={visa:'التأشيرة',ticket:'تذكرة الطير�
  +G('التكاليف الشهرية في مصر',Object.keys(L2).map(k=>NI(L2[k],'','cm.'+k)).join(''))
  +G('تكاليف الانتقال لمرة واحدة',Object.keys(L1).map(k=>NI(L1[k],'','c1.'+k)).join(''))
  +G('فئات الدخل',TX('الفئات','سطر لكل فئة','cats',5))
+ +(window.SYNC?SYNC.rows():'')
  +G('البيانات',RW('تصدير نسخة احتياطية','ملف بكل بياناتك',`<button class="btn g" onclick="exp()">تصدير</button>`)
    +RW('استيراد نسخة احتياطية','يستبدل البيانات الحالية',`<button class="btn g" onclick="$('imp').click()">استيراد</button>`)
    +RW('مسح كل البيانات','لا يمكن التراجع عن ذلك',`<button class="btn r" onclick="if(confirm('حذف كل البيانات؟')){localStorage.removeItem(K);location.reload()}">مسح</button>`))
@@ -296,4 +297,5 @@ if('serviceWorker' in navigator&&!window.NATIVE)navigator.serviceWorker.register
 document.addEventListener('visibilitychange',()=>{if(!document.hidden){calc();notify();if(page==2)structR();if(page==3)tasksR()}});
 fill();paint();ph();tbar();tick();setInterval(tick,1000);setInterval(ph,60000);setInterval(()=>{calc();refAvail();if(page==2)structR()},30000);
 </script>
+<script src="sync.js"></script>
 <script src="native.js"></script></body></html>
