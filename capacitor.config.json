@@ -1,0 +1,9 @@
+{
+  "appId": "com.alwaleed.ninetydays",
+  "appName": "90 Day Game",
+  "webDir": "www",
+  "android": { "backgroundColor": "#f2f1ed" },
+  "plugins": {
+    "LocalNotifications": { "smallIcon": "ic_stat_notify", "iconColor": "#2a2a2a" }
+  }
+}
