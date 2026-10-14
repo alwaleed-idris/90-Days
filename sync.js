@@ -3,7 +3,7 @@
    their cloud copy. The whole app state is one JSON document; the newest copy (by S._t) wins.
    API is the web version's address, used by the Android app (the web version calls itself). */
 (function(){
-const API='https://90-d-alwaleed-idris.vercel.app';
+const API='https://90-d-sigma.vercel.app';
 const KK='alwaleed-90-synckey',ST='alwaleed-90-sync';
 let key='',last=0,pushT=null,busy=false,err='';
 try{key=localStorage.getItem(KK)||''}catch(e){}
