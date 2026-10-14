@@ -56,5 +56,5 @@ window.SYNC={
 };
 
 if(signed())sync();
-setInterval(sync,60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)sync()});addEventListener('online',sync);
+setInterval(()=>{if(!document.hidden)sync()},60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)sync()});addEventListener('online',sync);
 })();
