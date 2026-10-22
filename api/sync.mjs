@@ -23,7 +23,7 @@ export async function PUT(req) {
   const k = keyOf(req); if (!k) return json({ error: 'bad key' }, 400);
   if (!ready()) return json({ error: 'storage not connected' }, 503);
   const text = await req.text();
-  if (text.length > 2e6) return json({ error: 'too large' }, 413);
+  if (text.length > 4e6) return json({ error: 'too large' }, 413);
   let body; try { body = JSON.parse(text) } catch (e) { return json({ error: 'bad json' }, 400) }
   if (!body || typeof body.data != 'object') return json({ error: 'missing data' }, 400);
   await put(`s/${k}.json`, JSON.stringify(body.data), { access: 'private', allowOverwrite: true, addRandomSuffix: false, contentType: 'application/json' });
